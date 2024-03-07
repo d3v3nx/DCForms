@@ -16,7 +16,7 @@ import { FormDetailsComponent } from './dc-forms/form-details/form-details.compo
 const appRoutes : Routes = [
   {path:'',component:DcFormsListComponent},
   {path:'add-form',component:AddFormComponent},
-  {path:'form-detail',component:FormDetailsComponent},
+  {path:'form-detail/:id',component:FormDetailsComponent},
   {path:'**',component:DcFormsListComponent}
 ]
 
