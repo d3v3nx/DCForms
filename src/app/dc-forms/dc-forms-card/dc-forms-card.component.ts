@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { IForms } from '../IForms.interface';
 
 @Component({
   selector: 'app-dc-forms-card',
@@ -6,5 +7,5 @@ import { Component, Input } from '@angular/core';
   styleUrl: './dc-forms-card.component.css'
 })
 export class DcFormsCardComponent {
-  @Input() dcform : any
+  @Input() dcform : any;
 }
