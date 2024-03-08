@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,11 +13,15 @@ import { DcFormsCardComponent } from './dc-forms/dc-forms-card/dc-forms-card.com
 import { FormsService } from './services/forms.service';
 import { AddFormComponent } from './dc-forms/add-form/add-form.component';
 import { FormDetailsComponent } from './dc-forms/form-details/form-details.component';
+import { UserLoginComponent } from './user/user-login/user-login.component';
+import { UserRegisterComponent } from './user/user-register/user-register.component';
 
 const appRoutes : Routes = [
   {path:'',component:DcFormsListComponent},
   {path:'add-form',component:AddFormComponent},
   {path:'form-detail/:id',component:FormDetailsComponent},
+  {path:'user/login',component:UserLoginComponent},
+  {path:'user/register',component:UserRegisterComponent},
   {path:'**',component:DcFormsListComponent}
 ]
 
@@ -28,12 +33,16 @@ const appRoutes : Routes = [
     DcFormsListComponent,
     DcFormsCardComponent,
     AddFormComponent,
-    FormDetailsComponent
+    FormDetailsComponent,
+    UserLoginComponent,
+    UserRegisterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [

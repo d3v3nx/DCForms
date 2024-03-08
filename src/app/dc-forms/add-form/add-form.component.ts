@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,6 +12,9 @@ export class AddFormComponent {
   ngOnInit(){}
     onBack(){
       this.router.navigate(['/']);
+    }
+    onSubmit(addForm:NgForm){
+      console.log(addForm.value);
     }
 }
 
