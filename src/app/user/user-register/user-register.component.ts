@@ -8,18 +8,23 @@ import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators }
 })
 export class UserRegisterComponent {
   registrationForm!: FormGroup;
+  emailregex = '^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$';
   constructor(){}
   ngOnInit(){
     this.registrationForm = new FormGroup({
-      userName : new FormControl('',Validators.required),
-      email : new FormControl('',[Validators.required,Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$')]),
-      mobile : new FormControl('',[Validators.required,Validators.maxLength(10)]),
-      pass : new FormControl('',[Validators.required,Validators.maxLength(5)]),
-      confpass : new FormControl('',[Validators.required,Validators.maxLength(5)])
+      name : new FormControl('',Validators.required),
+      // email : new FormControl('',[Validators.required,Validators.pattern(this.emailregex)]),
+      email : new FormControl('',Validators.required),
+      mobile : new FormControl('',Validators.required),
+      pass : new FormControl('',Validators.required),
+      confpass : new FormControl('',Validators.required)
     },this.passwordMatchingValidator);
   }
   onSubmit(){
-    console.log(this.registrationForm);
+    console.log(this.registrationForm.value);
+  }
+  get fget(){
+    return this.registrationForm.controls;
   }
   passwordMatchingValidator(fc: AbstractControl): ValidationErrors | null {
     return fc.get('pass')?.value === fc.get('confpass')?.value ? null :

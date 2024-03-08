@@ -8,31 +8,56 @@
         <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
           <div class="form-group col-12">
               <label for="name" class="form-label">Name</label>
-              <input type="text" class="form-control" formControlName="userName">
+              <input type="text" name="name" [class.is-invalid]="fget['name'].invalid && fget['name'].touched" class="form-control" formControlName="name">
           </div>
+          <span *ngIf="fget['name'].invalid && fget['name'].touched">
+            <span *ngIf="fget['name'].errors && fget['name'].errors['required']">
+              Please Enter Name
+            </span>
+          </span>
 
           <div class="form-group col-12">
             <label for="mobile" class="form-label">Mobile</label>
-            <input type="text" class="form-control" formControlName="mobile">
+            <input type="text" name="mobile" [class.is-invalid]="fget['mobile'].invalid && fget['mobile'].touched" class="form-control" formControlName="mobile">
           </div>
+          <span *ngIf="fget['mobile'].invalid && fget['mobile'].touched">
+            <span *ngIf="fget['mobile'].errors && fget['mobile'].errors['required']">
+              Please Enter Mobile Number
+            </span>
+          </span>
   
           <div class="form-group col-12">
             <label for="email" class="form-label">Email</label>
-            <input type="text" class="form-control" formControlName="email">
+            <input type="text" name="email" [class.is-invalid]="fget['email'].invalid && fget['email'].touched" class="form-control" formControlName="email">
           </div>
-  
+          <span *ngIf="fget['email'].invalid && fget['email'].touched">
+            <span *ngIf="fget['email'].errors && fget['email'].errors['required']">
+              Please Enter Email
+            </span>
+          </span>
+
           <div class="form-group col-12">
             <label for="passwrod" class="form-label">Password</label>
-            <input type="text" class="form-control" formControlName="pass">
+            <input type="text" name="pass" [class.is-invalid]="fget['pass'].invalid && fget['pass'].touched" class="form-control" formControlName="pass">
           </div>
+          <span *ngIf="fget['pass'].invalid && fget['pass'].touched">
+            <span *ngIf="fget['pass'].errors && fget['pass'].errors['required']">
+              Please Enter Password
+            </span>
+          </span>
   
           <div class="form-group col-12">
             <label for="cpassword" class="form-label">Confirm Password</label>
-            <input type="text" class="form-control" formControlName="confpass">
+            <input type="text" name="confpass" [class.is-invalid]="fget['confpass'].invalid && fget['confpass'].touched" class="form-control" formControlName="confpass">
           </div>
+          <span *ngIf="fget['confpass'].invalid && fget['confpass'].touched">
+            <span *ngIf="fget['confpass'].errors && fget['confpass'].errors['required']">
+              Please Enter Conf Password
+            </span>
+          </span>
   
           <div class="form-group col-12">
-            <button type="submit" class="btn btn-primary m-2">Register</button>
+            <button type="submit" [class.disabled]="registrationForm.invalid" class="btn btn-primary m-2">Register</button>
             <button type="reset" class="btn btn-danger m-2">Cancel</button>
           </div>
         </form>
