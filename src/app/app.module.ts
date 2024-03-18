@@ -15,6 +15,7 @@ import { AddFormComponent } from './dc-forms/add-form/add-form.component';
 import { FormDetailsComponent } from './dc-forms/form-details/form-details.component';
 import { UserLoginComponent } from './user/user-login/user-login.component';
 import { UserRegisterComponent } from './user/user-register/user-register.component';
+import { UserService } from './services/user.service';
 
 const appRoutes : Routes = [
   {path:'',component:DcFormsListComponent},
@@ -47,7 +48,8 @@ const appRoutes : Routes = [
   ],
   providers: [
     provideClientHydration(),
-    FormsService
+    FormsService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
