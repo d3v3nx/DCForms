@@ -6,16 +6,15 @@ import { User } from '../model/user';
 })
 export class UserService {
 
-constructor() { }
-addUser(user:User){
-  let users = [];
-  if (localStorage.getItem('Users')){
-    users = JSON.parse(localStorage.getItem('Users') as string);
-    users = [user, ...users];
+  constructor() { }
+  addUser(user: User) {
+    let users = [];
+    if (localStorage.getItem('Users')) {
+      users = JSON.parse(localStorage.getItem('Users') as string);
+
+    }
+    users.push(user);
+    localStorage.setItem('Users', JSON.stringify(users));
   }
-  else{
-    users = [user];
-  }
-  localStorage.setItem('Users',JSON.stringify(user));
-}
+
 }

@@ -9,11 +9,13 @@ import { User } from '../../model/user';
   styleUrl: './user-register.component.css'
 })
 export class UserRegisterComponent {
-  registrationForm!: FormGroup;
-  user!:User;
-  userSubmitted:boolean = false;
+  registrationForm: FormGroup;
+  user: User;
+  userSubmitted: boolean;
   emailregex = '^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$';
-  constructor(private fb: FormBuilder, private userServeice: UserService) { }
+  constructor(
+    private fb: FormBuilder,
+    private userServeice: UserService) { }
   ngOnInit() {
     //   this.registrationForm = new FormGroup({
     //     name : new FormControl('',Validators.required),
@@ -26,13 +28,13 @@ export class UserRegisterComponent {
     this.createRegistrationForm();
   }
   onSubmit() {
-    // console.log(this.registrationForm.value);
+    // console.log(this.registrationForm);
     this.userSubmitted = true;
-    if(this.registrationForm.valid){
-    // this.user = Object.assign(this.user, this.registrationForm.value);
-    this.userServeice.addUser(this.userData());
-    this.registrationForm.reset();
-    this.userSubmitted = false;
+    if (this.registrationForm.valid) {
+      // this.user = Object.assign(this.user, this.registrationForm.value);
+      this.userServeice.addUser(this.userData());
+      // this.registrationForm.reset();
+      this.userSubmitted = false;
     }
   }
   get fget() {
@@ -41,38 +43,47 @@ export class UserRegisterComponent {
   createRegistrationForm() {
     this.registrationForm = this.fb.group
       ({
-        name: ['', Validators.required],
-        email: ['', Validators.required],
-        mobile: ['', Validators.required],
-        pass: ['', Validators.required],
-        confpass: ['', Validators.required]
+        name: ['deven', Validators.required],
+        email: ['admin@gmail.com', [Validators.required, Validators.email]],
+        mobile: ['9999999999', Validators.required],
+        password: ['111', [Validators.required, Validators.minLength(3)]],
+        confpass: ['111', Validators.required]
       },
-        { Validators: this.passwordMatchingValidator }
+        { validators: this.passwordMatchingValidator }
       );
   }
-  passwordMatchingValidator(fc: AbstractControl): ValidationErrors | null {
-    return fc.get('pass')?.value === fc.get('confpass')?.value ? null :
-      { notmatched: true }
+  passwordMatchingValidator(fg: AbstractControl): ValidationErrors | null {
+    return fg.get('password')?.value === fg.get('confpass')?.value ? null :
+      { notmatched: true };
   };
-  userData():User{
-    return this.user = {
-      name : this.name.value,
-      email:this.email.value,
-      password : this.password.value,
-      mobile : this.mobile.value
+  userData(): User {
+    if (this.registrationForm) {
+      return this.user = {
+        name: this.name ? this.name.value : '',
+        email: this.email ? this.email.value : '',
+        password: this.password ? this.password.value : '',
+        mobile: this.mobile ? this.mobile.value : ''
+      };
+    } else {
+      return {} as User;
     }
   }
-  get name(){
+
+  // getter methods
+  get name() {
     return this.registrationForm.get('name') as FormControl;
   }
-  get email(){
+  get email() {
     return this.registrationForm.get('email') as FormControl;
   }
-  get password(){
+  get password() {
     return this.registrationForm.get('password') as FormControl;
   }
-  get mobile(){
+  get confpass() {
+    return this.registrationForm.get('confpass') as FormControl;
+  }
+  get mobile() {
     return this.registrationForm.get('mobile') as FormControl;
   }
-  
+
 }
