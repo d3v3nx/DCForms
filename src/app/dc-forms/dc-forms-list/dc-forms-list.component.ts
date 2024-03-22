@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsService } from '../../services/forms.service';
 import { error } from 'console';
-import { IForms } from '../IForms.interface';
+import { IForm } from '../../model/iform';
 
 
 @Component({
@@ -10,7 +10,7 @@ import { IForms } from '../IForms.interface';
   styleUrl: './dc-forms-list.component.css'
 })
 export class DcFormsListComponent {
-  DCForms : Array<IForms>=[];
+  DCForms : Array<IForm>=[];
 
   constructor(private fromserv:  FormsService){}
 

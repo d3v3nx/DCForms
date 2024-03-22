@@ -1,6 +1,29 @@
 <div class="card">
-    <h1>{{dcform.name}}</h1>
-    <h2>{{dcform.type}}</h2>
-    <button class="btn btn-primary bi bi-pencil-square" routerLink="/form-detail/{{dcform.id}}"> Edit</button>
-    <button class="btn btn-danger bi bi-trash3"> Remove</button>
+  <div class="card-body p-1">
+    <h1 class="mb-0"> {{dcform.BHK}} BHK {{dcform.PType}} </h1>
+
+    in {{dcform.Name}}
+    <span *ngIf="dcform.Name">,</span>
+    {{dcform.City}}
+
+    <h6 class="mt-2">{{dcform.FType}}
+      <span *ngIf="dcform.FType !== 'Unfurnished'">Furnished</span> | Ready to Move
+    </h6>
+
+    <hr class="mt-0 mb-2">
+
+    <h6 class="mb-0">Price: <span class>{{dcform.Price}} USD.</span> |
+      Area: <span>{{dcform.BuiltArea}} Sq Ft </span> </h6>
+  </div>
+  <ul *ngIf="!hideIcons" class="list-inline text-center">
+    <li class="list-inline-item">
+      <button class="btn btn-primary bi bi-pencil-square" routerLink="/form-detail/{{dcform.Id}}">Edit</button>
+    </li>
+    <li class="list-inline-item">
+      <button class="btn btn-primary bi bi-trash3">Remove</button>
+    </li>
+  </ul>
+
+  <!-- <button class="btn btn-primary bi bi-pencil-square" routerLink="/form-detail/{{dcform.id}}"> Edit</button>
+    <button class="btn btn-danger bi bi-trash3"> Remove</button> -->
 </div>
