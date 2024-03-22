@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrl: './nav-bar.component.css'
 })
 export class NavBarComponent {
+  loggedinUser :string;
+  loggdin(){
+    this.loggedinUser =  localStorage.getItem('token') as string;
+    return this.loggedinUser;
+  }
+  onLogout(){
+    return localStorage.removeItem('token');
 
+  }
 }

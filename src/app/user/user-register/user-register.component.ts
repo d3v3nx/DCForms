@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { User } from '../../model/user';
+// import * as alertyfy from 'alertifyjs';
 
 @Component({
   selector: 'app-user-register',
@@ -35,6 +36,7 @@ export class UserRegisterComponent {
       this.userServeice.addUser(this.userData());
       // this.registrationForm.reset();
       this.userSubmitted = false;
+      // alertyfy.success("Good");
     }
   }
   get fget() {
